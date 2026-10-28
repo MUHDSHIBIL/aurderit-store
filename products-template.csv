@@ -1,0 +1,4 @@
+﻿name,category,sku,image_url,description,price,cost,stock,is_active
+"Women's Kurti",Fashion,AUR-FASH-001,https://replace-with-your-image-url.example/kurti.jpg,Printed cotton kurti,449,300,10,true
+Smart Watch,Electronics,AUR-ELEC-001,https://replace-with-your-image-url.example/watch.jpg,Smart watch with basic features,1199,750,5,true
+Kitchen Organizer,Home & Living,AUR-HOME-001,https://replace-with-your-image-url.example/organizer.jpg,Space-saving kitchen organizer,599,350,8,false

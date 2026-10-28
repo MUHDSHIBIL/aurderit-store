@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aurderit Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">A</span><span>Aurderit<small>Store management</small></span></a>
+    <nav><a href="index.html">View store</a></nav>
+  </header>
+  <main class="container admin-container">
+    <section id="setup-warning" class="notice warning hidden">Supabase is not configured yet. Follow README.txt, then fill in supabase-config.js.</section>
+    <section id="login-panel" class="panel auth-panel">
+      <p class="eyebrow">PRIVATE STORE TOOLS</p><h1>Admin sign in</h1>
+      <p class="muted">Sign in with the admin account you created in Supabase.</p>
+      <form id="login-form" class="stack">
+        <label>Email<input id="email" type="email" required autocomplete="username" placeholder="you@example.com"></label>
+        <label>Password<input id="password" type="password" required autocomplete="current-password" placeholder="Your password"></label>
+        <button class="btn primary" type="submit">Sign in</button>
+        <p id="login-message" class="form-message"></p>
+      </form>
+    </section>
+    <section id="dashboard" class="hidden">
+      <div class="dashboard-heading"><div><p class="eyebrow">PRODUCT CONTROL</p><h1>Manage products</h1><p class="muted">Add a product, update its details, or hide it from the shop.</p></div><button id="signout" class="btn secondary">Sign out</button></div>
+      <div class="admin-layout">
+        <section class="panel">
+          <h2 id="form-title">Add a product</h2>
+          <form id="product-form" class="stack">
+            <input id="product-id" type="hidden">
+            <label>Product name *<input id="name" maxlength="120" required placeholder="e.g. Smart Watch"></label>
+            <div class="two-col">
+              <label>Category *<select id="category" required><option value="Fashion">Fashion</option><option value="Electronics">Electronics</option><option value="Home & Living">Home & Living</option><option value="Kitchen">Kitchen</option><option value="Beauty">Beauty</option><option value="Toys & Kids">Toys & Kids</option><option value="Other">Other</option></select></label>
+              <label>SKU (optional)<input id="sku" maxlength="60" placeholder="AUR-001"></label>
+            </div>
+            <label>Image URL *<input id="image-url" type="url" required placeholder="https://example.com/product.jpg"><small>Use an image URL you own or have permission to use.</small></label>
+            <label>Short description<textarea id="description" rows="3" maxlength="700" placeholder="Describe the product honestly."></textarea></label>
+            <div class="two-col">
+              <label>Selling price (₹) *<input id="price" type="number" min="0" step="0.01" required placeholder="449"></label>
+              <label>Supplier cost (₹)<input id="cost" type="number" min="0" step="0.01" placeholder="300"></label>
+            </div>
+            <div class="two-col">
+              <label>Stock quantity<input id="stock" type="number" min="0" step="1" value="0" required></label>
+              <label class="checkbox-label"><input id="active" type="checkbox" checked> Show in store</label>
+            </div>
+            <div class="button-row"><button class="btn primary" type="submit" id="save-button">Save product</button><button class="btn secondary" type="button" id="cancel-edit">Clear form</button></div>
+            <p id="form-message" class="form-message"></p>
+          </form>
+        </section>
+        <section class="panel bulk-panel">
+          <p class="eyebrow">SAVE TIME</p><h2>Bulk import products</h2>
+          <p class="muted">Upload CSV or Excel (.csv, .xlsx, .xls). Preview and validate before anything is saved.</p>
+          <p><a href="products-template.csv" download>Download CSV template</a></p>
+          <label>Choose product file<input id="bulk-file" type="file" accept=".csv,.xlsx,.xls,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"></label>
+          <div class="two-col"><label>Duplicate handling<select id="duplicate-mode"><option value="skip">Skip existing matches (recommended)</option><option value="update">Update matching products</option></select></label><label>Default visibility for blank is_active<select id="bulk-active"><option value="true">Visible in store</option><option value="false">Hidden</option></select></label></div>
+          <p class="muted">Match by SKU when provided; otherwise product name + category. Duplicate rows within the file are skipped.</p>
+          <div class="button-row"><button class="btn secondary" id="preview-button" type="button" disabled>Preview file</button><button class="btn primary" id="import-button" type="button" disabled>Import valid rows</button></div>
+          <p id="bulk-message" class="form-message"></p><div id="bulk-summary" class="bulk-summary hidden"></div><div id="bulk-errors" class="bulk-errors hidden"></div><div id="bulk-preview" class="table-wrap hidden"></div>
+        </section>
+        <section class="panel inventory-panel">
+          <div class="inventory-heading"><div><h2>Your inventory</h2><p id="inventory-count" class="muted">Loading…</p></div><button id="refresh" class="btn secondary">Refresh</button></div>
+          <div id="inventory" class="inventory-list"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer><strong>Aurderit</strong><span>Admin access is protected by Supabase authentication and database policies.</span></footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aurderit — Quality Products. Happy You.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">A</span><span>Aurderit<small>Quality Products. Happy You.</small></span></a>
+    <nav><a href="index.html">Shop</a><a href="admin.html">Admin</a></nav>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <div><p class="eyebrow">SMART CHOICES. BETTER LIVING.</p><h1>Find something<br><span>you’ll love.</span></h1><p>Explore useful everyday finds, selected for quality and value.</p></div>
+      <div class="hero-art"><div class="orb"></div><div class="hero-card">AURDERIT<br><b>New finds<br>every week.</b></div></div>
+    </section>
+    <section class="section-head"><div><p class="eyebrow">THE COLLECTION</p><h2>Shop products</h2></div><input id="search" type="search" placeholder="Search products…"></section>
+    <div id="status" class="notice">Loading products…</div>
+    <section id="products" class="product-grid" aria-live="polite"></section>
+    <section id="empty" class="empty hidden"><h3>No products found</h3><p>Try another search, or check back soon.</p></section>
+  </main>
+  <footer><strong>Aurderit</strong><span>Quality Products. Happy You.</span><a href="admin.html">Store admin</a></footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="store.js"></script>
+</body>
+</html>
