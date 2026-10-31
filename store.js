@@ -12,6 +12,11 @@
 
   let products = [];
 
+  if (!grid || !status || !empty || !search) {
+    console.error("Aurderit: Required store HTML elements are missing.");
+    return;
+  }
+
   if (!configReady || !window.supabase) {
     status.textContent =
       "Store setup is not finished yet. Configure Supabase by following README.txt.";
@@ -39,13 +44,15 @@
       maximumFractionDigits: 2
     }).format(Number(value) || 0);
 
-  // Gallery styling
+  // Product gallery and shopping button styles
   const style = document.createElement("style");
+
   style.textContent = `
     .product-gallery {
       width: 100%;
       overflow: hidden;
     }
+
     .product-image {
       width: 100%;
       aspect-ratio: 1 / 1;
@@ -53,12 +60,14 @@
       display: block;
       background: #f3f3f3;
     }
+
     .product-thumbnails {
       display: flex;
       gap: 8px;
       padding: 10px;
       overflow-x: auto;
     }
+
     .product-thumb {
       width: 58px;
       height: 58px;
@@ -70,15 +79,61 @@
       cursor: pointer;
       background: #eee;
     }
+
     .product-thumb.selected {
       border-color: #111;
     }
+
     .product-thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+
+    .aurderit-product-actions {
+      display: flex;
+      gap: 9px;
+      padding: 14px;
+    }
+
+    .aurderit-add-cart,
+    .aurderit-buy-now {
+      flex: 1;
+      min-width: 0;
+      padding: 13px 8px;
+      border: none;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .aurderit-add-cart {
+      background: #171717;
+      color: white;
+    }
+
+    .aurderit-buy-now {
+      background: #e5e5e5;
+      color: #111;
+    }
+
+    .aurderit-add-cart:hover {
+      background: #333;
+    }
+
+    .aurderit-buy-now:hover {
+      background: #ccc;
+    }
+
+    .aurderit-add-cart:disabled,
+    .aurderit-buy-now:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
   `;
+
   document.head.appendChild(style);
 
   function getImages(product) {
@@ -103,10 +158,14 @@
     grid.innerHTML = filtered.map(p => {
       const images = getImages(p);
       const mainImage = images[0] || "";
+      const stock = Math.max(0, Number(p.stock) || 0);
+      const available = stock > 0;
 
       return `
         <article class="product-card">
+
           <div class="product-gallery">
+
             <img
               class="product-image"
               src="${safe(mainImage)}"
@@ -133,10 +192,15 @@
                   </div>`
                 : ""
             }
+
           </div>
 
           <div class="product-info">
-            <div class="product-category">${safe(p.category)}</div>
+
+            <div class="product-category">
+              ${safe(p.category)}
+            </div>
+
             <h3>${safe(p.name)}</h3>
 
             <p class="description">
@@ -145,20 +209,59 @@
 
             <div class="price-row">
               <span class="price">${rupees(p.price)}</span>
+
               <span class="stock">
-                ${Number(p.stock) > 0 ? "In stock" : "Check availability"}
+                ${available ? "In stock" : "Out of stock"}
               </span>
             </div>
+
           </div>
+
+          <div class="aurderit-product-actions">
+
+            <button
+              type="button"
+              class="aurderit-add-cart"
+              data-aurderit-add
+              data-product-id="${safe(p.id)}"
+              data-product-name="${safe(p.name)}"
+              data-product-price="${Number(p.price) || 0}"
+              data-product-image="${safe(mainImage)}"
+              data-product-stock="${stock}"
+              ${!available ? "disabled" : ""}
+            >
+              Add to Cart
+            </button>
+
+            <button
+              type="button"
+              class="aurderit-buy-now"
+              data-aurderit-buy
+              data-product-id="${safe(p.id)}"
+              data-product-name="${safe(p.name)}"
+              data-product-price="${Number(p.price) || 0}"
+              data-product-image="${safe(mainImage)}"
+              data-product-stock="${stock}"
+              ${!available ? "disabled" : ""}
+            >
+              Buy Now
+            </button>
+
+          </div>
+
         </article>
       `;
     }).join("");
 
     empty.classList.toggle("hidden", filtered.length !== 0);
     status.classList.toggle("hidden", products.length > 0);
+
+    if (!filtered.length && products.length > 0) {
+      empty.classList.remove("hidden");
+    }
   }
 
-  // Switch the main image when a thumbnail is clicked
+  // Product gallery thumbnail selection
   grid.addEventListener("click", event => {
     const button = event.target.closest("[data-gallery-product]");
     if (!button) return;
@@ -186,6 +289,14 @@
       thumb.classList.toggle("selected", selected);
       thumb.setAttribute("aria-pressed", String(selected));
     });
+
+    // Update the image used by Add to Cart and Buy Now.
+    const actions = button.closest(".product-card")
+      .querySelectorAll("[data-aurderit-add], [data-aurderit-buy]");
+
+    actions.forEach(action => {
+      action.dataset.productImage = url;
+    });
   });
 
   async function load() {
@@ -203,7 +314,7 @@
     if (error) {
       status.textContent =
         "Could not load products. Check Supabase setup and database policies.";
-      console.error(error);
+      console.error("Aurderit Supabase error:", error);
       return;
     }
 
@@ -214,6 +325,8 @@
       status.textContent =
         "Your store is ready for products. Add the first product in Admin.";
       status.classList.remove("hidden");
+    } else {
+      status.classList.add("hidden");
     }
   }
 
