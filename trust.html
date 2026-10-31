@@ -4,397 +4,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shop confidently at AURDERIT. Learn about Cash on Delivery, free delivery, selected product returns, refunds and customer support.">
+
   <title>Shop With Confidence | AURDERIT</title>
+  <meta name="description" content="Learn about AURDERIT delivery, Cash on Delivery, selected product returns and customer support.">
+
+  <!-- Reuse your existing storefront stylesheet -->
+  <link rel="stylesheet" href="style.css">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #090d14;
-      color: #f5f7fa;
+    .trust-page {
+      max-width: 850px;
+      margin: 40px auto;
+      padding: 20px;
+      color: inherit;
       line-height: 1.7;
     }
 
-    header {
-      padding: 22px 7%;
-      background: #101722;
-      border-bottom: 1px solid #263242;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    header a.back {
-      color: #cbd5e1;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    header a.back:hover {
-      color: #35d49a;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 75px 20px 55px;
-      background: linear-gradient(135deg, #111e2c, #102c29);
-    }
-
-    .hero .icon {
-      font-size: 48px;
-      margin-bottom: 15px;
-    }
-
-    .hero h1 {
-      font-size: clamp(30px, 5vw, 46px);
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      color: #bdc9d5;
-      max-width: 650px;
-      margin: auto;
-    }
-
-    .trust-grid {
-      max-width: 1050px;
-      margin: -25px auto 45px;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      position: relative;
-    }
-
-    .trust-item {
-      background: #151f2b;
-      border: 1px solid #293747;
-      border-radius: 14px;
-      padding: 20px 12px;
-      text-align: center;
-    }
-
-    .trust-item .icon {
-      font-size: 27px;
-      margin-bottom: 8px;
-    }
-
-    .trust-item h3 {
-      font-size: 14px;
-    }
-
-    .trust-item p {
-      font-size: 12px;
-      color: #aab7c5;
-      margin-top: 4px;
-    }
-
-    main {
-      max-width: 850px;
-      padding: 0 20px 70px;
-      margin: auto;
-    }
-
-    .section {
-      background: #121a25;
-      border: 1px solid #293747;
-      border-radius: 15px;
-      padding: 25px;
-      margin-bottom: 18px;
-    }
-
-    .section h2 {
-      color: #45d6a2;
-      font-size: 20px;
-      margin-bottom: 12px;
-    }
-
-    .section h3 {
-      color: #fff;
-      font-size: 16px;
-      margin: 18px 0 8px;
-    }
-
-    .section p {
-      color: #c0cad5;
-      margin-bottom: 9px;
-    }
-
-    .section ul {
-      padding-left: 22px;
-      color: #c0cad5;
-    }
-
-    .section li {
-      margin-bottom: 8px;
-    }
-
-    .return-label {
-      display: inline-block;
-      background: #123b30;
-      border: 1px solid #28795d;
-      color: #65e6b5;
-      padding: 6px 12px;
-      border-radius: 30px;
-      font-size: 12px;
-      font-weight: bold;
-      margin: 5px 0 12px;
-    }
-
-    .email-box {
-      background: #102b29;
-      border: 1px solid #28795d;
-      border-radius: 14px;
-      text-align: center;
-      padding: 28px 15px;
-      margin-top: 15px;
-    }
-
-    .email-box a {
-      display: inline-block;
-      color: #55e3ae;
-      font-size: 19px;
-      font-weight: bold;
-      text-decoration: none;
-      margin-top: 8px;
-      word-break: break-word;
-    }
-
-    .email-box a:hover {
-      text-decoration: underline;
-    }
-
-    .promise {
-      text-align: center;
-      padding: 30px 20px;
-      color: #d5e3e0;
-    }
-
-    .promise h2 {
-      color: #45d6a2;
+    .trust-page h1 {
       margin-bottom: 10px;
     }
 
-    footer {
-      background: #101722;
-      border-top: 1px solid #293747;
-      text-align: center;
-      padding: 25px 15px;
-      color: #9aa8b7;
-      font-size: 13px;
+    .trust-page h2 {
+      font-size: 19px;
+      margin: 28px 0 8px;
     }
 
-    footer a {
-      color: #45d6a2;
-      text-decoration: none;
-      margin: 0 8px;
+    .trust-page p,
+    .trust-page li {
+      line-height: 1.8;
     }
 
-    @media (max-width: 650px) {
-      .trust-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    .trust-page ul {
+      padding-left: 22px;
+    }
 
-      .hero {
-        padding: 55px 20px 45px;
-      }
+    .trust-page a {
+      color: inherit;
+      text-decoration: underline;
+    }
 
-      .section {
-        padding: 20px;
-      }
+    .trust-page .trust-contact {
+      padding: 15px;
+      border: 1px solid rgba(128,128,128,.35);
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+
+    .trust-back {
+      display: inline-block;
+      margin-bottom: 25px;
+      text-decoration: none !important;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <a class="logo" href="index.html">AURDERIT</a>
-  <a class="back" href="index.html">← Back to Store</a>
-</header>
+  <main class="trust-page">
 
-<section class="hero">
-  <div class="icon">🛡️</div>
-  <h1>Shop With Confidence</h1>
-  <p>
-    Welcome to AURDERIT! We want every customer to enjoy
-    a safe, simple, and reliable shopping experience.
-  </p>
-</section>
+    <a class="trust-back" href="index.html">← Back to Store</a>
 
-<section class="trust-grid">
-  <div class="trust-item">
-    <div class="icon">🚚</div>
-    <h3>Free Delivery</h3>
-    <p>On eligible orders</p>
-  </div>
+    <h1>Shop With Confidence</h1>
+    <p>
+      Welcome to AURDERIT! We want every customer to enjoy
+      a simple, convenient and reliable shopping experience.
+    </p>
 
-  <div class="trust-item">
-    <div class="icon">💵</div>
-    <h3>Cash on Delivery</h3>
-    <p>Where available</p>
-  </div>
-
-  <div class="trust-item">
-    <div class="icon">↩️</div>
-    <h3>7-Day Returns</h3>
-    <p>Selected products only</p>
-  </div>
-
-  <div class="trust-item">
-    <div class="icon">✉️</div>
-    <h3>Email Support</h3>
-    <p>We're here to help</p>
-  </div>
-</section>
-
-<main>
-
-  <section class="section">
     <h2>1. Secure Shopping</h2>
     <p>
-      Your shopping experience matters to us. We aim to provide
-      clear product information, transparent prices, and
-      straightforward ordering.
+      We aim to provide clear product information, transparent
+      prices and a straightforward ordering experience.
     </p>
-  </section>
 
-  <section class="section">
-    <h2>2. Cash on Delivery Available</h2>
+    <h2>2. Cash on Delivery</h2>
     <p>
-      You can place your order and pay when it arrives at your
-      delivery address, where Cash on Delivery (COD) is available.
+      Pay when your order arrives at your delivery address,
+      where Cash on Delivery is available.
     </p>
-  </section>
 
-  <section class="section">
     <h2>3. Free Delivery</h2>
     <p>
-      Enjoy free delivery on eligible orders. Any delivery
-      conditions or exceptions will be shown before you confirm
-      your order.
+      Enjoy free delivery on eligible orders. Any conditions
+      or exceptions will be communicated before order confirmation.
     </p>
-  </section>
 
-  <section class="section">
-    <h2>4. Easy Ordering</h2>
-    <p>
-      Browse our products, choose your preferred items, and
-      follow the checkout instructions to place your order.
-    </p>
-    <p>
-      If you have questions before buying, contact our customer
-      support team by email.
-    </p>
-  </section>
-
-  <section class="section">
-    <h2>5. Product Information</h2>
+    <h2>4. Product Information</h2>
     <p>
       We aim to provide accurate product descriptions and images.
-      Please review the product details, specifications, and
-      price carefully before placing your order.
+      Please review product details before placing your order.
     </p>
-  </section>
 
-  <section class="section">
-    <h2>6. Returns and Refunds</h2>
+    <h2>5. Returns and Refunds</h2>
     <p>
-      At AURDERIT, customer satisfaction is important to us.
+      A 7-day return option is available on selected products only.
+      Eligible products will display a
+      <strong>7-Day Return Available</strong> label.
     </p>
-
-    <h3>7-Day Return Policy – Selected Products Only</h3>
-    <span class="return-label">↩ 7-Day Return Available</span>
-
     <ul>
-      <li>A 7-day return option is available on selected products only.</li>
-      <li>Eligible products will display a 7-Day Return Available label on their product page.</li>
-      <li>Return requests must be submitted within 7 days of receiving the product.</li>
-      <li>Products must meet the applicable return conditions, including being unused and in their original packaging where required.</li>
-      <li>Some products may be excluded from returns. Please check the product page before ordering.</li>
+      <li>Submit your return request within 7 days of receiving the product.</li>
+      <li>Products must meet the applicable return conditions.</li>
+      <li>Some products may not be eligible for returns.</li>
+      <li>Damaged, defective or incorrect products should be reported to our support team with order details and photos.</li>
     </ul>
 
-    <h3>Damaged or Incorrect Products</h3>
+    <h2>6. Customer Privacy</h2>
     <p>
-      If you receive a damaged, defective, or incorrect product,
-      contact our support team with your order details and photos.
+      We use customer information to process orders, arrange
+      delivery and provide support. Never share your passwords
+      or banking PINs with anyone.
     </p>
 
-    <h3>How to Request a Return</h3>
+    <h2>7. Contact Customer Support</h2>
     <p>
-      Email us with your order number, product name, and reason
-      for the return. Our team will review your request and
-      explain the next steps.
-    </p>
-  </section>
-
-  <section class="section">
-    <h2>7. Customer Privacy</h2>
-    <p>
-      We use the information you provide to process orders,
-      arrange delivery, and communicate with you.
-      Never share passwords or banking PINs with anyone
-      claiming to represent AURDERIT.
-    </p>
-  </section>
-
-  <section class="section">
-    <h2>8. Contact Customer Support</h2>
-    <p>
-      For questions about products, orders, delivery, returns,
-      or refunds, contact us by email.
+      For product questions, order updates, returns or refunds,
+      contact us by email.
     </p>
 
-    <div class="email-box">
-      <div style="font-size:30px;">✉️</div>
-      <h3>Need Help? Contact Us</h3>
-      <p>Our customer support email:</p>
-      <a href="mailto:aurderit@gmail.com">
-        aurderit@gmail.com
-      </a>
+    <div class="trust-contact">
+      <strong>Email Support:</strong><br>
+      <a href="mailto:aurderit@gmail.com">aurderit@gmail.com</a>
     </div>
-  </section>
 
-  <section class="promise">
     <h2>Our Promise</h2>
     <p>
-      Your trust is important to us. We aim to make shopping
-      convenient, transparent, and customer-friendly.
+      Your trust matters to us. Thank you for choosing AURDERIT!
     </p>
-    <p><strong>Thank you for choosing AURDERIT!</strong></p>
-  </section>
 
-</main>
-
-<footer>
-  <p>© <span id="year"></span> AURDERIT. All rights reserved.</p>
-  <p style="margin-top:10px;">
-    <a href="index.html">Home</a>
-    <a href="trust.html">Shop With Confidence</a>
-    <a href="mailto:aurderit@gmail.com">Contact</a>
-  </p>
-</footer>
-
-<script>
-  document.getElementById("year").textContent =
-    new Date().getFullYear();
-</script>
+  </main>
 
 </body>
 </html>
