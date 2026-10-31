@@ -35,7 +35,24 @@
               <label>Category *<select id="category" required><option value="Fashion">Fashion</option><option value="Electronics">Electronics</option><option value="Home & Living">Home & Living</option><option value="Kitchen">Kitchen</option><option value="Beauty">Beauty</option><option value="Toys & Kids">Toys & Kids</option><option value="Other">Other</option></select></label>
               <label>SKU (optional)<input id="sku" maxlength="60" placeholder="AUR-001"></label>
             </div>
-            <label>Image URL *<input id="image-url" type="url" required placeholder="https://example.com/product.jpg"><small>Use an image URL you own or have permission to use.</small></label>
+           
+<label>Product images (maximum 5)
+  <input
+    id="product-images"
+    type="file"
+    accept="image/jpeg,image/png,image/webp"
+    multiple
+  >
+  <small>Select up to 5 images. JPG, PNG or WebP.</small>
+</label>
+
+<div id="image-preview" class="image-preview"></div>
+
+<label>Image URL (optional)
+  <input id="image-url" type="url" placeholder="https://example.com/product.jpg">
+  <small>Optional external image URL for products without uploaded images.</small>
+</label>
+
             <label>Short description<textarea id="description" rows="3" maxlength="700" placeholder="Describe the product honestly."></textarea></label>
             <div class="two-col">
               <label>Selling price (₹) *<input id="price" type="number" min="0" step="0.01" required placeholder="449"></label>
