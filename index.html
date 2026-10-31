@@ -1,29 +1,192 @@
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Aurderit — Quality Products. Happy You.</title>
+  <meta name="description" content="Discover useful everyday products at Aurderit. Shop quality products with convenient ordering and delivery.">
+  <meta name="theme-color" content="#111111">
+
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Shopping buttons */
+    .aurderit-product-actions {
+      display: flex;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .aurderit-add-cart,
+    .aurderit-buy-now {
+      flex: 1;
+      padding: 13px 8px;
+      border: 0;
+      border-radius: 9px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .aurderit-add-cart {
+      background: #111;
+      color: white;
+    }
+
+    .aurderit-buy-now {
+      background: #e5e5e5;
+      color: #111;
+    }
+
+    .aurderit-add-cart:disabled,
+    .aurderit-buy-now:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .product-gallery {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      background: #f3f3f3;
+    }
+
+    .product-thumbnails {
+      display: flex;
+      gap: 8px;
+      padding: 10px;
+      overflow-x: auto;
+    }
+
+    .product-thumb {
+      width: 58px;
+      height: 58px;
+      flex: 0 0 58px;
+      padding: 0;
+      border: 2px solid transparent;
+      border-radius: 7px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #eee;
+    }
+
+    .product-thumb.selected {
+      border-color: #111;
+    }
+
+    .product-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
 </head>
+
 <body>
+
+  <!-- HEADER -->
   <header class="topbar">
-    <a class="brand" href="index.html"><span class="brand-mark">A</span><span>Aurderit<small>Quality Products. Happy You.</small></span></a>
-    <nav><a href="index.html">Shop</a><a href="admin.html">Admin</a></nav>
+    <a class="brand" href="index.html">
+      <span class="brand-mark">A</span>
+      <span>
+        Aurderit
+        <small>Quality Products. Happy You.</small>
+      </span>
+    </a>
+
+    <nav>
+      <a href="index.html">Shop</a>
+      <a href="admin.html">Admin</a>
+    </nav>
   </header>
+
+  <!-- MAIN STORE -->
   <main class="container">
+
     <section class="hero">
-      <div><p class="eyebrow">SMART CHOICES. BETTER LIVING.</p><h1>Find something<br><span>you’ll love.</span></h1><p>Explore useful everyday finds, selected for quality and value.</p></div>
-      <div class="hero-art"><div class="orb"></div><div class="hero-card">AURDERIT<br><b>New finds<br>every week.</b></div></div>
+      <div>
+        <p class="eyebrow">SMART CHOICES. BETTER LIVING.</p>
+
+        <h1>
+          Find something<br>
+          <span>you’ll love.</span>
+        </h1>
+
+        <p>
+          Explore useful everyday finds, selected for quality and value.
+        </p>
+      </div>
+
+      <div class="hero-art">
+        <div class="orb"></div>
+
+        <div class="hero-card">
+          AURDERIT<br>
+          <b>New finds<br>every week.</b>
+        </div>
+      </div>
     </section>
-    <section class="section-head"><div><p class="eyebrow">THE COLLECTION</p><h2>Shop products</h2></div><input id="search" type="search" placeholder="Search products…"></section>
-    <div id="status" class="notice">Loading products…</div>
-    <section id="products" class="product-grid" aria-live="polite"></section>
-    <section id="empty" class="empty hidden"><h3>No products found</h3><p>Try another search, or check back soon.</p></section>
+
+    <!-- PRODUCT SEARCH -->
+    <section class="section-head">
+      <div>
+        <p class="eyebrow">THE COLLECTION</p>
+        <h2>Shop products</h2>
+      </div>
+
+      <input
+        id="search"
+        type="search"
+        placeholder="Search products…"
+      >
+    </section>
+
+    <!-- PRODUCT STATUS -->
+    <div id="status" class="notice">
+      Loading products…
+    </div>
+
+    <!-- PRODUCTS -->
+    <section
+      id="products"
+      class="product-grid"
+      aria-live="polite"
+    ></section>
+
+    <!-- EMPTY MESSAGE -->
+    <section id="empty" class="empty hidden">
+      <h3>No products found</h3>
+      <p>Try another search, or check back soon.</p>
+    </section>
+
   </main>
-  <footer><strong>Aurderit</strong><span>Quality Products. Happy You.</span><a href="admin.html">Store admin</a></footer>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>Aurderit</strong>
+    <span>Quality Products. Happy You.</span>
+    <a href="admin.html">Store admin</a>
+  </footer>
+
+  <!-- SUPABASE LIBRARY -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- SUPABASE CONFIGURATION -->
   <script src="supabase-config.js"></script>
+
+  <!-- PRODUCT DISPLAY AND SEARCH -->
   <script src="store.js"></script>
+
+  <!-- SHOPPING CART AND WHATSAPP CHECKOUT -->
+  <script src="cart.js"></script>
+
 </body>
 </html>
