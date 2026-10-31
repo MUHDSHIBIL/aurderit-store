@@ -10,6 +10,35 @@
   const db = window.supabase.createClient(window.AURDERIT_SUPABASE_URL, window.AURDERIT_SUPABASE_ANON_KEY);
   let currentUser = null;
   let products = [];
+  let existingImages = [];
+let selectedImageFiles = [];
+
+const imageInput = $("product-images");
+const imagePreview = $("image-preview");
+
+function renderImagePreview() {
+  if (!imagePreview) return;
+
+  const items = [
+    ...existingImages.map((url, index) => ({
+      url, kind: "existing", index
+    })),
+    ...selectedImageFiles.map((file, index) => ({
+      url: URL.createObjectURL(file),
+      kind: "new",
+      index
+    }))
+  ];
+
+  imagePreview.innerHTML = items.map(item => `
+    <div class="image-preview-item">
+      <img src="${safe(item.url)}" alt="Product image preview">
+      <button type="button"
+        data-image-kind="${item.kind}"
+        data-image-index="${item.index}">×</button>
+    </div>
+  `).join("");
+}
   const safe = (value) => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const rupees = (value) => new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:2}).format(Number(value)||0);
   function message(id,text,error=false){$(id).textContent=text;$(id).classList.toggle("error",error);}
